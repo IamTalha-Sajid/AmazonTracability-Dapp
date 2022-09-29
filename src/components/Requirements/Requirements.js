@@ -18,7 +18,7 @@ function Requirements() {
       <Typography sx={{ml:20}}>Requirements Page</Typography>
      </div>
      <div>
-      <TextField required variant="outlined" label="Quantity" name="Entity" multiline/>
+      <TextField required variant="outlined" label="Quantity" name="Quantity" multiline/>
       <TextField required variant="outlined" label="Estimated Production" name="Estimated Production" multiline/>
      </div>
      <div>
