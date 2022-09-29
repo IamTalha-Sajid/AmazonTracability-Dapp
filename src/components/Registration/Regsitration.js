@@ -8,8 +8,9 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Web3Modal from "web3modal";
 import { providers, Contract } from "ethers";
 import { TOKEN_ADDRESS, abi } from "../../constants/constants"
+import Navigation from "../Navigation/Navigation";
 
-function Home() {
+function Registration() {
   // const [walletConnected, setWalletConnected] = useState(false);
   const [claimedReward, setclaimedReward] = useState(false);
   // loading is set to true when we are waiting for a transaction to get mined
@@ -42,6 +43,7 @@ useEffect(() => {
       ceo.actions.setErrorMessage("Fill all required fields")
     }
     else{
+      console.log("TESTTT")
   connectWallet()
   register(ceo.state.attributes)
 }
@@ -53,11 +55,11 @@ const connectWallet = async () => {
   try {
     // Get the provider from web3Modal, which in our case is MetaMask
     // When used for the first time, it prompts the user to connect their wallet
-    await getProviderOrSigner();
+    await getProviderOrSigner(false);
     // setWalletConnected(true);
 
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -165,9 +167,13 @@ const handleChange = (evt) =>{
     component="form"
     sx={{
       '& .MuiTextField-root': { m: 1, width: '25ch' },
-      ml:40
+      ml:40,
+      mt:8
     }}
   >
+    <div>
+      <Typography sx={{ml:35}}>Regsitration Page</Typography>
+     </div>
      <div>
       <TextField required variant="outlined" onChange={handleChange} label="Entity" name="Entity" multiline/>
       <TextField required variant="outlined" onChange={handleChange} label="NTN" name="NTN" multiline/>
@@ -193,4 +199,4 @@ const handleChange = (evt) =>{
   );
 }
 
-export default Home;
+export default Registration;
