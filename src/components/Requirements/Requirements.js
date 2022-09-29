@@ -10,12 +10,19 @@ function Requirements() {
     component="form"
     sx={{
       '& .MuiTextField-root': { m: 1, width: '25ch' },
-      ml:40,
+      ml:55,
       mt:8
     }}
   >
-    <div>
-      <Typography sx={{ml:35}}>Requirements Page</Typography>
+      <div>
+      <Typography sx={{ml:20}}>Requirements Page</Typography>
+     </div>
+     <div>
+      <TextField required variant="outlined" label="Quantity" name="Entity" multiline/>
+      <TextField required variant="outlined" label="Estimated Production" name="Estimated Production" multiline/>
+     </div>
+     <div>
+      <Button variant="contained" sx={{ml:23}}>Submit</Button>
      </div>
      </Box>
             );
