@@ -3,6 +3,7 @@ import Registration from "./components/Registration/Regsitration";
 import Requirements from "./components/Requirements/Requirements";
 import Transactions from "./components/Transactions/Transactions";
 import Navigation from "./components/Navigation/Navigation";
+import SignIn from "./components/SignIn/SignIn";
 import "./App.css";
 import "./index.css";
 import icon from './icons/icon/book-32.ico';
@@ -45,6 +46,12 @@ function App() {
           <>
           <Navigation />
         <Transactions />
+        </>} />
+        <Route 
+        path="/signin" 
+        element={
+          <>
+          <SignIn />
         </>} />
 
           {/* <Link to="/">

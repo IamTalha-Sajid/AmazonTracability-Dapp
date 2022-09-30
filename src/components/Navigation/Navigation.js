@@ -14,10 +14,9 @@ function Navigation(props) {
         return (           
     <Box
     sx={{
-      display: "flex", gap:5, ml:61
+      display: "flex", gap:5, ml:70
     }}
   >
-        <Link to="/">Registration</Link>
         <Link to="/requirements">Requirements</Link>
         <Link to="/transactions">Transactions</Link>
      </Box>
