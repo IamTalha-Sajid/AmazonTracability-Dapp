@@ -3,7 +3,7 @@ import { Grid, Button, Box, Typography,TextField } from "@mui/material";
 import Navigation from "../Navigation/Navigation";
 
 
-function Requirements() {
+function Application() {
    
         return (           
     <Box
@@ -15,7 +15,10 @@ function Requirements() {
     }}
   >
       <div>
-      <Typography sx={{ml:20}}>Requirements Page</Typography>
+      <Typography sx={{ml:21.5, mb:5}}>Application Page</Typography>
+     </div>
+     <div>
+      <Typography sx={{ml:20}}>Fill out Requirements</Typography>
      </div>
      <div>
       <TextField required variant="outlined" label="Quantity" name="Quantity" multiline/>
@@ -28,4 +31,4 @@ function Requirements() {
             );
         }
 
-    export default Requirements;
+    export default Application;

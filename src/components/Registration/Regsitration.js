@@ -182,7 +182,7 @@ const handleChange = (evt) =>{
       <Button onClick={handleSubmit} variant="contained" sx={{ml:38}}>Register</Button>
      </div>
      <div>
-     <Typography sx={{ml:35}}>Already Registered? <Link to="/Signin">
+     <Typography sx={{ml:32, mt:3}}>Already Registered? <Link to="/Signin">
           Sign in
           </Link>
           </Typography>

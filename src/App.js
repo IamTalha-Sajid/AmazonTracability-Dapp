@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Registration from "./components/Registration/Regsitration";
-import Requirements from "./components/Requirements/Requirements";
+import Application from "./components/Application/Application";
 import Transactions from "./components/Transactions/Transactions";
 import Navigation from "./components/Navigation/Navigation";
 import SignIn from "./components/SignIn/SignIn";
+import Home from "./components/Home/Home";
 import "./App.css";
 import "./index.css";
 import icon from './icons/icon/book-32.ico';
@@ -28,17 +29,16 @@ function App() {
         path="/registration" 
         element={
           <>
-          <Navigation />
         <Registration />
         </>
         } />
         <Route path="/" element={<Navigate replace to="/registration" />} />
         <Route 
-        path="/requirements" 
+        path="/application" 
         element={
           <>
           <Navigation />
-        <Requirements />
+        <Application />
         </>} />
         <Route 
         path="/transactions" 
@@ -46,6 +46,13 @@ function App() {
           <>
           <Navigation />
         <Transactions />
+        </>} />
+        <Route 
+        path="/home" 
+        element={
+          <>
+          <Navigation />
+        <Home />
         </>} />
         <Route 
         path="/signin" 
