@@ -3,7 +3,7 @@ import { Grid, Button, Box, Typography,TextField } from "@mui/material";
 import Navigation from "../Navigation/Navigation";
 
 
-function SignIn() {
+function Approval() {
    
         return (           
     <Box
@@ -15,17 +15,13 @@ function SignIn() {
     }}
   >
     <div>
-      <Typography sx={{ml:23}}>Sign in page</Typography>
+      <Typography sx={{ml:23.5}}>Approval page</Typography>
      </div>
      <div>
-      <TextField required variant="outlined" label="Email" name="Email" multiline/>
-      <TextField required variant="outlined" label="Password" name="Estimated Production" multiline/>
-     </div>
-     <div>
-      <Button variant="contained" sx={{ml:24}}>Sign In</Button>
+      <Button variant="contained" sx={{ml:20, mt:3}}>Approve Request</Button>
      </div>
      </Box>
             );
         }
 
-    export default SignIn;
+    export default Approval;

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Registration from "./components/Registration/Regsitration";
-import Application from "./components/Application/Application";
-import Transactions from "./components/Transactions/Transactions";
+import Retailer from "./components/Retailer/Retailer";
+import Request from "./components/Request/Request";
 import Navigation from "./components/Navigation/Navigation";
-import SignIn from "./components/SignIn/SignIn";
+import Courier from "./components/Courier/Courier";
+import Approval from "./components/Approval/Approval";
 import Home from "./components/Home/Home";
 import "./App.css";
 import "./index.css";
@@ -26,47 +27,41 @@ function App() {
           <Router>
       <Routes>
         <Route 
-        path="/registration" 
-        element={
-          <>
-        <Registration />
-        </>
-        } />
-        <Route path="/" element={<Navigate replace to="/registration" />} />
-        <Route 
-        path="/application" 
-        element={
-          <>
-          <Navigation />
-        <Application />
-        </>} />
-        <Route 
-        path="/transactions" 
-        element={
-          <>
-          <Navigation />
-        <Transactions />
-        </>} />
-        <Route 
         path="/home" 
         element={
           <>
-          <Navigation />
         <Home />
-        </>} />
+        </>
+        } />
+        <Route path="/" element={<Navigate replace to="/home" />} />
         <Route 
-        path="/signin" 
+        path="/retailer" 
         element={
           <>
-          <SignIn />
+          <Navigation />
+        <Retailer />
         </>} />
-
-          {/* <Link to="/">
-          <Registration />
-          </Link>
-          <Link to="/requirements">
-          <Requirements />
-          </Link> */}
+         <Route 
+        path="/request" 
+        element={
+          <>
+          <Navigation />
+        <Request />
+        </>} />
+        <Route 
+        path="/approval" 
+        element={
+          <>
+          <Navigation />
+          <Approval />
+        </>} />
+        <Route 
+        path="/courier" 
+        element={
+          <>
+          <Navigation />
+          <Courier />
+        </>} />
             </Routes>
             </Router>
 

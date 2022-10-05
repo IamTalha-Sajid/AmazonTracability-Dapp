@@ -17,9 +17,10 @@ function Navigation(props) {
       display: "flex", gap:5, ml:64
     }}
   >
-        <Link to="/application">Application</Link>
-        <Link to="/transactions">Transactions</Link>
+        <Link to="/retailer">Retailer</Link>
+        <Link to="/request">Request</Link>
         <Link to="/home">Home</Link>
+        <Link to="/Approval">Approval</Link>
      </Box>
             );
         }

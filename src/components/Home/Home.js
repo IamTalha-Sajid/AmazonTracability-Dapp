@@ -16,13 +16,10 @@ function Home() {
     }}
   >
       <div>
-      <Typography sx={{ml:10, mb:3}}>Welcome to Control Drug Regulation and Monitoring System</Typography>
+      <Typography sx={{ml:15, mb:3}}>Welcome to Amazon Traceability Program</Typography>
      </div>
      <div>
-      <Button component={Link} to="/application" variant="contained" sx={{ml:22.7, mb:3}}>Go to Application Portal</Button>
-     </div>
-     <div>
-      <Button component={Link} to="/transactions" variant="contained" sx={{ml:22}}>Go to Transactions Portal</Button>
+      <Button component={Link} to="/retailer" variant="contained" sx={{ml:22.7, mb:3}}>Enroll as a Seller</Button>
      </div>
      </Box>
             );

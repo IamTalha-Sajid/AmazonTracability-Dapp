@@ -10,7 +10,7 @@ import { providers, Contract } from "ethers";
 import { TOKEN_ADDRESS, abi } from "../../constants/constants"
 import Navigation from "../Navigation/Navigation";
 import { Link } from "react-router-dom";
-import SignIn from "../SignIn/SignIn";
+import SignIn from "../Approval/Approval";
 
 function Registration() {
   // const [walletConnected, setWalletConnected] = useState(false);
