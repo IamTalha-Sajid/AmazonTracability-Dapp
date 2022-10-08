@@ -5,6 +5,7 @@ import Request from "./components/Request/Request";
 import Navigation from "./components/Navigation/Navigation";
 import Courier from "./components/Courier/Courier";
 import Approval from "./components/Approval/Approval";
+import Transaction from "./components/Transaction/Transaction";
 import Home from "./components/Home/Home";
 import "./App.css";
 import "./index.css";
@@ -40,6 +41,13 @@ function App() {
           <>
           <Navigation />
         <Retailer />
+        </>} />
+        <Route 
+        path="/transaction" 
+        element={
+          <>
+          <Navigation />
+          <Transaction />
         </>} />
          <Route 
         path="/request" 

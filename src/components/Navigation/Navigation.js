@@ -13,22 +13,6 @@ import { providers, Contract } from "ethers";
 
 function Navigation(props) {
    
-        return (           
-    <Box
-    sx={{
-      display: "flex", gap:5, ml:59, mt: 3
-    }}
-  >
-        <Link to="/retailer">Retailer</Link>
-        <Link to="/request">Request</Link>
-        <Link to="/home">Home</Link>
-        <Link to="/approval">Approval</Link>
-        <Link to="/courier">Courier</Link>
-        <Button variant="contained" sx={{ml:23}}>Connect Wallet</Button>
-     </Box>
-            );
-        }
-
   const [walletConnected, setWalletConnected] = useState(false);
   const web3ModalRef = useRef();
 
@@ -84,7 +68,7 @@ function Navigation(props) {
   return (
     <Box
       sx={{
-        display: "flex", gap: 5, ml: 59, mt: 2
+        display: "flex", gap: 5, ml: 50, mt: 2
       }}
     >
       <Link to="/retailer">Retailer</Link>
@@ -92,9 +76,12 @@ function Navigation(props) {
       <Link to="/home">Home</Link>
       <Link to="/approval">Approval</Link>
       <Link to="/courier">Courier</Link>
+      <Link to="/transaction">Transaction</Link>
       <Button variant="contained" sx={{ ml: 23 }} disabled={walletConnected ? true : false} onClick={connectWallet}>Connect Wallet</Button>
     </Box>
   );
+
+  
 }
 
 export default Navigation;
