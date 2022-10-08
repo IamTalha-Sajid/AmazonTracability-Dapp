@@ -18,7 +18,7 @@ function Transaction() {
       }}
     >
       <div>
-        <Typography sx={{ ml: 23, mb: 5 }}>Transaction Page</Typography>
+        <Typography sx={{ ml: 23, mb: 5 }}>All Transactions are here</Typography>
       </div>
       
     </Box>
