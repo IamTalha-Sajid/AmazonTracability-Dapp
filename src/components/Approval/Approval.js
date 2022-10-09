@@ -8,7 +8,18 @@ import { providers, Contract } from "ethers";
 function Approval() {
 
   const [walletConnected, setWalletConnected] = useState(false);
+  const [id, setId] = useState('')
+  const [count, setCount] = useState(0)
   const web3ModalRef = useRef();
+
+  useEffect(() => {
+    setCount(0)
+    setId('')
+  }, []);
+
+  useEffect(() => {
+    setCount(1)
+  }, [id]);
 
   useEffect(() => {
 
@@ -75,6 +86,10 @@ function Approval() {
 
       const tx = await tokenContract.approveRequest({ value: 100 });
       await tx.wait();
+      console.log(tx.hash)
+      const show = "Your Transaction ID is: " + tx.hash
+      setId(show)
+      // await console.log(tx)
 
     } catch (err) {
       console.log(err);
@@ -97,6 +112,10 @@ function Approval() {
       </div>
       <div>
         <Button onClick={register} variant="contained" sx={{ ml: 20, mt: 3 }}>Approve Request</Button>
+      </div>
+      <div>
+        {console.log("DEBUG", count, id)}
+        <Typography sx={{ ml: -9, mt: 3 }}>{id}</Typography>
       </div>
     </Box>
   );
