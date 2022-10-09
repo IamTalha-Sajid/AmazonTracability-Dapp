@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Grid, Button, Box, Typography, TextField } from "@mui/material";
+import { Grid, Button, Box, Typography, TextField, Paper } from "@mui/material";
 import Navigation from "../Navigation/Navigation";
 import { TOKEN_ADDRESS, abi } from "../../constants/constants"
 import Web3Modal from "web3modal";
@@ -10,8 +10,13 @@ import { providers, Contract } from "ethers";
 function Transaction() {
 
   const [walletConnected, setWalletConnected] = useState(false);
+  const [res, setRes] = useState([]);
   const[txid, setTxid] = useState(false);
   const web3ModalRef = useRef();
+
+  useEffect(() => {
+    setRes([])
+  }, [])
 
   useEffect(() => {
     // if wallet is not connected, create a new instance of Web3Modal and connect the MetaMask wallet
@@ -54,9 +59,10 @@ function Transaction() {
       // const address = await signer.getAddress();
       // call the whitelistedAddresses from the contract
       const tx = await tokenContract.getTransactionDetails(txid);
-    //   await tx.wait();
+      // await tx.wait();
     //   alert(tx)
-    //   console.log(tx)
+      console.log(tx)
+      setRes(tx)
     } catch (err) {
       console.log(err);
     }
@@ -110,6 +116,30 @@ function Transaction() {
       <div>
         <Button onClick={getTransaction} variant="contained" sx={{ ml: 9, mt: 2 }}>Submit</Button>
       </div>
+      {
+        res.length > 0 &&
+      <Box
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        '& > :not(style)': {
+          mt: 3,
+          ml: -17,
+          p:5
+        }
+      }}
+    >
+      <Paper elevation={3} sx={{alignItems: 'center'}}>
+        <Typography>
+          {console.log('DEBUG IN RETURN',res.approved)}
+        Approved: {String(res.approved)}
+        </Typography>
+        <Typography>
+        Product Id: {String(res.from)}
+        </Typography>
+        </Paper>
+    </Box>
+    }
     </Box>
   );
 }
