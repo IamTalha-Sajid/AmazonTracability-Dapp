@@ -39,7 +39,10 @@ function Transaction() {
       // Get the address associated to the signer which is connected to  MetaMask
       // const address = await signer.getAddress();
       // call the whitelistedAddresses from the contract
-      const _rewardedUser = await tokenContract.getTransactionDetails(txId);
+      const tx = await tokenContract.getTransactionDetails(txid);
+    //   await tx.wait();
+    //   alert(tx)
+    //   console.log(tx)
     } catch (err) {
       console.log(err);
     }
@@ -53,26 +56,6 @@ function Transaction() {
       });
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const register = async (attributes) => {
-    try {
-      // We will need the signer later to get the user's address
-      // Even though it is a read transaction, since Signers are just special kinds of Providers,
-      // We can use it in it's place
-      const signer = await getProviderOrSigner(true);
-      const tokenContract = new Contract(
-        TOKEN_ADDRESS,
-        abi,
-        signer
-      );
-      // Get the address associated to the signer which is connected to  MetaMask
-      // const address = await signer.getAddress();
-      // call the whitelistedAddresses from the contract
-      const _rewardedUser = await tokenContract.addUser(attributes);
-    } catch (err) {
-      console.log(err);
     }
   };
 
@@ -114,14 +97,19 @@ function Transaction() {
       component="form"
       sx={{
         '& .MuiTextField-root': { m: 1, width: '25ch' },
-        ml: 50,
+        ml: 70,
         mt: 8
       }}
     >
       <div>
-        <Typography sx={{ ml: 23, mb: 5 }}>All Transactions are here</Typography>
+        <Typography sx={{ ml: 6, mb: 5 }}>Transactions Page</Typography>
       </div>
-
+      <div>
+        <TextField onChange={(e) => setTxid(e.target.value)} required variant="outlined" label="Transaction Id" name="Transaction Id" />
+      </div>
+      <div>
+        <Button onClick={getTransaction} variant="contained" sx={{ ml: 9, mt: 2 }}>Submit</Button>
+      </div>
     </Box>
   );
 }
