@@ -111,7 +111,7 @@ function Transaction() {
         <Typography sx={{ ml: 6, mb: 5 }}>Transactions Page</Typography>
       </div>
       <div>
-        <TextField onChange={(e) => setTxid(e.target.value)} required variant="outlined" label="Transaction Id" name="Transaction Id" />
+        <TextField onChange={(e) => setTxid(e.target.value)} required variant="outlined" label="Enter Amount" name="Enter Amount" />
       </div>
       <div>
         <Button onClick={getTransaction} variant="contained" sx={{ ml: 9, mt: 2 }}>Submit</Button>
