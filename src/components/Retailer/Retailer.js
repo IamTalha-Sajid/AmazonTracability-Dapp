@@ -77,8 +77,10 @@ function Retailer() {
         signer
       );
 
+      const address = signer.toString();
       const tx = await tokenContract.registeration(storeName, supplierName, supplierAddress);
       await tx.wait();
+      alert("Registration Successful");
 
     } catch (err) {
       console.log(err);
