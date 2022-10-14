@@ -1,4 +1,4 @@
-export const TOKEN_ADDRESS = "0x2cb73863A20760BB9566a3262A2d74737054eF01";
+export const TOKEN_ADDRESS = "0x61a1d7DBBB5c54bb563C6Edc8C01b3CA9fa0a974";
 export const abi = [
   {
     "inputs": [],
@@ -6,16 +6,29 @@ export const abi = [
     "type": "constructor"
   },
   {
-    "inputs": [],
-    "name": "approveRequest",
-    "outputs": [
+    "inputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "productID",
         "type": "uint256"
       }
     ],
-    "stateMutability": "payable",
+    "name": "approveRequest",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "checkTransactionStatus",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -85,8 +98,26 @@ export const abi = [
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "productID",
+        "type": "uint256"
+      }
+    ],
+    "name": "performTransaction",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "supplierAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "retailerAddress",
         "type": "address"
       },
       {
@@ -173,27 +204,14 @@ export const abi = [
         "internalType": "address",
         "name": "productOwner",
         "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "paymentApproved",
+        "type": "bool"
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "name",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "_address",
-        "type": "address"
-      }
-    ],
-    "name": "registerCourier",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {

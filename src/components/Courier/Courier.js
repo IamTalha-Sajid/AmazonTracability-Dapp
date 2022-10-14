@@ -113,7 +113,7 @@ function Courier() {
   );
 }
 
-const TOKEN_ADDRESS = "0x2cb73863A20760BB9566a3262A2d74737054eF01";
+const TOKEN_ADDRESS = "0x61a1d7DBBB5c54bb563C6Edc8C01b3CA9fa0a974";
 const abi = [
   {
     "inputs": [],

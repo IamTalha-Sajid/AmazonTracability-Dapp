@@ -12,6 +12,7 @@ function Transaction() {
   const [walletConnected, setWalletConnected] = useState(false);
   const [res, setRes] = useState([]);
   const[txid, setTxid] = useState(false);
+  const[pid, setPid] = useState(false);
   const web3ModalRef = useRef();
 
   useEffect(() => {
@@ -58,7 +59,7 @@ function Transaction() {
       // Get the address associated to the signer which is connected to  MetaMask
       // const address = await signer.getAddress();
       // call the whitelistedAddresses from the contract
-      const tx = await tokenContract.getTransactionDetails(txid);
+      const tx = await tokenContract.performTransaction(pid, { value: txid });
       // await tx.wait();
     //   alert(tx)
       console.log(tx)
@@ -112,6 +113,7 @@ function Transaction() {
       </div>
       <div>
         <TextField onChange={(e) => setTxid(e.target.value)} required variant="outlined" label="Enter Amount" name="Enter Amount" />
+        <TextField onChange={(e) => setPid(e.target.value)} required variant="outlined" label="Product Id" name="Enter Product Id" />
       </div>
       <div>
         <Button onClick={getTransaction} variant="contained" sx={{ ml: 9, mt: 2 }}>Submit</Button>

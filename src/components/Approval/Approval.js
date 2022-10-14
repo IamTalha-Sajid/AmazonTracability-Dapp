@@ -9,17 +9,9 @@ function Approval() {
 
   const [walletConnected, setWalletConnected] = useState(false);
   const [id, setId] = useState('')
+  const[pid, setPid] = useState(false);
   const [count, setCount] = useState(0)
   const web3ModalRef = useRef();
-
-  useEffect(() => {
-    setCount(0)
-    setId('')
-  }, []);
-
-  useEffect(() => {
-    setCount(1)
-  }, [id]);
 
   useEffect(() => {
 
@@ -64,6 +56,29 @@ function Approval() {
     return web3Provider;
   };
 
+  const register = async () => {
+    try {
+      // We will need the signer later to get the user's address
+      // Even though it is a read transaction, since Signers are just special kinds of Providers,
+      // We can use it in it's place
+      const signer = await getProviderOrSigner(true);
+      const tokenContract = new Contract(
+        TOKEN_ADDRESS,
+        abi,
+        signer
+      );
+      // Get the address associated to the signer which is connected to  MetaMask
+      // const address = await signer.getAddress();
+      // call the whitelistedAddresses from the contract
+      const tx = await tokenContract.approveRequest(pid);
+      // await tx.wait();
+    //   alert(tx)
+      console.log(tx)
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const changeNetwork = async () => {
     try {
       await window.ethereum.request({
@@ -72,29 +87,6 @@ function Approval() {
       });
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const register = async () => {
-    try {
-      const signer = await getProviderOrSigner(true);
-      const tokenContract = new Contract(
-        TOKEN_ADDRESS,
-        abi,
-        signer
-      );
-
-      const tx = await tokenContract.approveRequest({ value: 100 });
-      await tx.wait();
-      console.log(tx.hash)
-      const show = "Your Transaction ID is: " + tx.hash
-      setId(show)
-      // await console.log(tx)
-
-    } catch (err) {
-      console.log(err);
-      // alert(err);
-
     }
   };
 
@@ -111,6 +103,9 @@ function Approval() {
         <Typography sx={{ ml: 23.5 }}>Approval page</Typography>
       </div>
       <div>
+        <TextField onChange={(e) => setPid(e.target.value)} required variant="outlined" label="Product Id" name="Enter Product Id" />
+      </div>
+      <div>
         <Button onClick={register} variant="contained" sx={{ ml: 20, mt: 3 }}>Approve Request</Button>
       </div>
       <div>
@@ -121,7 +116,7 @@ function Approval() {
   );
 }
 
-const TOKEN_ADDRESS = "0x2cb73863A20760BB9566a3262A2d74737054eF01";
+const TOKEN_ADDRESS = "0x61a1d7DBBB5c54bb563C6Edc8C01b3CA9fa0a974";
 const abi = [
   {
     "inputs": [],
@@ -129,16 +124,29 @@ const abi = [
     "type": "constructor"
   },
   {
-    "inputs": [],
-    "name": "approveRequest",
-    "outputs": [
+    "inputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "productID",
         "type": "uint256"
       }
     ],
-    "stateMutability": "payable",
+    "name": "approveRequest",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "checkTransactionStatus",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -208,8 +216,26 @@ const abi = [
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "productID",
+        "type": "uint256"
+      }
+    ],
+    "name": "performTransaction",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "supplierAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "retailerAddress",
         "type": "address"
       },
       {
@@ -296,27 +322,14 @@ const abi = [
         "internalType": "address",
         "name": "productOwner",
         "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "paymentApproved",
+        "type": "bool"
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "name",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "_address",
-        "type": "address"
-      }
-    ],
-    "name": "registerCourier",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
