@@ -14,6 +14,10 @@ function Approval() {
   const web3ModalRef = useRef();
 
   useEffect(() => {
+    setCount(0)
+  }, [])
+
+  useEffect(() => {
 
     if (!walletConnected) {
 
@@ -71,11 +75,14 @@ function Approval() {
       // const address = await signer.getAddress();
       // call the whitelistedAddresses from the contract
       const tx = await tokenContract.approveRequest(pid);
+      await tx.wait();
+      setCount(1)
+      alert('Transaction Approved')
       // await tx.wait();
     //   alert(tx)
       console.log(tx)
     } catch (err) {
-      console.log(err);
+      alert(err);
     }
   };
 
@@ -95,23 +102,27 @@ function Approval() {
       component="form"
       sx={{
         '& .MuiTextField-root': { m: 1, width: '25ch' },
-        ml: 55,
+        ml: 70,
         mt: 8
       }}
     >
       <div>
-        <Typography sx={{ ml: 23.5 }}>Approval page</Typography>
+        <Typography sx={{ ml: 7.5, mb:3 }}>Approval page</Typography>
       </div>
       <div>
         <TextField onChange={(e) => setPid(e.target.value)} required variant="outlined" label="Product Id" name="Enter Product Id" />
       </div>
       <div>
-        <Button onClick={register} variant="contained" sx={{ ml: 20, mt: 3 }}>Approve Request</Button>
+        <Button onClick={register} variant="contained" sx={{ ml: 5, mt: 3 }}>Approve Request</Button>
       </div>
       <div>
+        {count === 1 ?
+          <Typography sx={{mt: 5, mr:5 }}>Your request has been approved by amazon</Typography> : <Typography></Typography>}
+      </div>
+      {/* <div>
         {console.log("DEBUG", count, id)}
         <Typography sx={{ ml: -9, mt: 3 }}>{id}</Typography>
-      </div>
+      </div> */}
     </Box>
   );
 }

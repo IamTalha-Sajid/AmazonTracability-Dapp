@@ -10,6 +10,7 @@ import { providers, Contract } from "ethers";
 function Transaction() {
 
   const [walletConnected, setWalletConnected] = useState(false);
+  const [count, setCount] = useState(0);
   const [res, setRes] = useState([]);
   const[txid, setTxid] = useState(false);
   const[pid, setPid] = useState(false);
@@ -17,6 +18,7 @@ function Transaction() {
 
   useEffect(() => {
     setRes([])
+    setCount(0)
   }, [])
 
   useEffect(() => {
@@ -60,6 +62,8 @@ function Transaction() {
       // const address = await signer.getAddress();
       // call the whitelistedAddresses from the contract
       const tx = await tokenContract.performTransaction(pid, { value: txid });
+      setCount(1)
+      alert("Transaction Successful");
       // await tx.wait();
     //   alert(tx)
       console.log(tx)
@@ -104,19 +108,23 @@ function Transaction() {
       component="form"
       sx={{
         '& .MuiTextField-root': { m: 1, width: '25ch' },
-        ml: 70,
+        ml: 54,
         mt: 8
       }}
     >
       <div>
-        <Typography sx={{ ml: 6, mb: 5 }}>Transactions Page</Typography>
+        <Typography sx={{ ml: 22, mb: 5 }}>Transactions Page</Typography>
       </div>
       <div>
         <TextField onChange={(e) => setTxid(e.target.value)} required variant="outlined" label="Enter Amount" name="Enter Amount" />
         <TextField onChange={(e) => setPid(e.target.value)} required variant="outlined" label="Product Id" name="Enter Product Id" />
       </div>
       <div>
-        <Button onClick={getTransaction} variant="contained" sx={{ ml: 9, mt: 2 }}>Submit</Button>
+        <Button onClick={getTransaction} variant="contained" sx={{ ml: 25, mt: 2 }}>Submit</Button>
+        <div>
+        {count === 1 ?
+          <Typography sx={{mt: 5 }}>The transaction with product id {pid} has been made with amount {txid}wei</Typography> : <Typography></Typography>}
+      </div>
       </div>
       {
         res.length > 0 &&

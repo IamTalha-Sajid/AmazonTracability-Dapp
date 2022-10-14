@@ -7,12 +7,18 @@ import { providers, Contract } from "ethers";
 
 function Request() {
    const [userId, setUserId] = useState('')
+   const [count, setCount] = useState(0)
    const [walletConnected, setWalletConnected] = useState(false);
    const [supplierAddress, setSupplierAddress] = useState(false);
    const [productId, setProductId] = useState(false);
    const [numberOfUnits, setNumberOfUnits] = useState(false);
    const web3ModalRef = useRef();
  
+
+   useEffect(() => {
+    setCount(0)
+  }, [])
+
    useEffect(() => {
  
      if (!walletConnected) {
@@ -78,6 +84,8 @@ function Request() {
  
        const tx = await tokenContract.productRequesting(supplierAddress, productId, numberOfUnits);
        await tx.wait();
+       alert('Request Created successfully')
+       setCount(1)
  
      } catch (err) {
        console.log(err);
@@ -109,6 +117,12 @@ function Request() {
        <div>
          <Button onClick={register} variant="contained" sx={{ ml: 23 }}>Submit</Button>
        </div>
+       <div>
+        {count === 1 ?
+        <>
+          <Typography sx={{mt: 5}}>You requested {numberOfUnits} number of units for supplier with address {supplierAddress} for product id {productId}</Typography> 
+          <Typography>The ownership of product id {productId} has been transfered from supplier address to retailer address</Typography> </>: <Typography></Typography>}
+      </div>
      </Box>
    );
  }

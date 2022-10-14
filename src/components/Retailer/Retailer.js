@@ -9,11 +9,23 @@ import { providers, Contract } from "ethers";
 function Retailer() {
 
   const [walletConnected, setWalletConnected] = useState(false);
+  const [count, setCount] = useState(0);
   const [supplierAddress, setSupplierAddress] = useState(false);
   const [storeName, setStoreName] = useState(false);
   const [supplierName, setSupplierName] = useState(false);
   const web3ModalRef = useRef();
 
+  // useEffect(() => {
+
+  // }, [count])
+
+  // function show(){
+  //   return `The supplier with address ${supplierName} has been registered`;
+  // }
+
+  useEffect(() => {
+    setCount(0)
+  },[])
   useEffect(() => {
 
     if (!walletConnected) {
@@ -77,9 +89,11 @@ function Retailer() {
         signer
       );
 
-      const address = signer.toString();
+      // const address = signer.toString();
+      console.log("aaa");
       const tx = await tokenContract.registeration(storeName, supplierName, supplierAddress);
       await tx.wait();
+      setCount(1)
       alert("Registration Successful");
 
     } catch (err) {
@@ -111,6 +125,11 @@ function Retailer() {
       </div>
       <div>
         <Button onClick={register} variant="contained" sx={{ ml: 36, mt: 2 }}>Register</Button>
+      </div>
+      <div>
+        {console.log("DEBUG", supplierAddress, supplierName)}
+        {count === 1 ?
+          <Typography sx={{mt: 5 }}>The supplier {supplierName} with address {supplierAddress} has been registered</Typography> : <Typography></Typography>}
       </div>
     </Box>
   );
